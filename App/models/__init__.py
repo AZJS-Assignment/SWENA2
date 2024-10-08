@@ -1,5 +1,4 @@
-from .user import *
-from .Person import *
+from .User import *
 from .Applicant import *
 from .Admin import *
 from .Company import *

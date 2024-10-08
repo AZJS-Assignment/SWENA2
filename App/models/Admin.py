@@ -1,10 +1,10 @@
 from App.database import db
-from .Person import *
+from .User import *
 from .Company import *
 from .Application import *
 from .Job import *
 
-class Admin(Person):
+class Admin(User):
     companyID = db.Column(db.Integer, db.ForeignKey('company.companyID'), nullable=True)
     
     def __init__(self, firstName, lastName, email, username, password, companyID):

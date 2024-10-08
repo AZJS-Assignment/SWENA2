@@ -5,10 +5,10 @@ class Job(db.Model):
     jobID = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)
     companyID = db.Column(db.Integer, db.ForeignKey('company.companyID'), nullable=False)
-    company = db.relationship('Company', backref='jobs', lazy=True)
     salaryRange = db.Column(db.String(120), nullable=False)
-    description = db.Column(db.String(120), nullable=False)
-    applicationDeadline = db.Column(db.String(120), nullable=False)
+    description = db.Column(db.String(1024), nullable=False)
+    applicationDeadline = db.Column(db.Date, nullable=False)
+    #company = db.relationship('Company', backref='jobs', lazy=True)
 
     def __init__(self, title, companyID, salaryRange, description, applicationDeadline):
         self.title = title

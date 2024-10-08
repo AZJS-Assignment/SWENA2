@@ -1,10 +1,10 @@
 from App.database import db
-from .Person import Person
+from .User import User
 from .Job import *
 from .Application import *
 
-class Applicant(Person):
-    resume = db.Column(db.String(20), nullable=True)
+class Applicant(User):
+    resume = db.Column(db.String(1024), nullable=True)
     applications = db.relationship('Application', backref='applicant', lazy=True)
 
     def __init__(self, firstName, lastName, email, username, password, resume):
@@ -16,6 +16,7 @@ class Applicant(Person):
         person_data['resume'] = self.resume
         return person_data
 
+    #methods
     def applyToJob(self, jobID: int, applicationDate: str) -> bool:
         """Apply to a job by creating a new application."""
         job = Job.query.get(jobID)
