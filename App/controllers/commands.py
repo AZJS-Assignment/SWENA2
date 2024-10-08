@@ -66,3 +66,12 @@ def view_all_applications():
 def view_applications(jobID):
     applications = get_applications_by_jobID_json()
     print(f"{applications}")
+
+# Command 11 - View All Tables
+def view_tables():
+    companies = get_all_companies_json()
+    applicants = get_all_applicants_json()
+    applications = get_all_applications_json()
+    jobs = get_all_jobs_json()
+    users = get_all_users_json()
+    print(f"Companies\n{companies}\n\nApplicants\n{applicants}\n\nApplications\n{applications}\n\nJobs\n{jobs}\n\nUsers\n{users}")
