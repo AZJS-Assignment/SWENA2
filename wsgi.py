@@ -1,6 +1,8 @@
 import click, pytest, sys
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
+from App.controllers import initialize
+from App.controllers.commands import *
 from App.main import *
 from App.models import *
 from App.controllers import *
@@ -121,6 +123,17 @@ def add_job_command(title, companyid, salaryrange, description, applicationdeadl
 def add_application_command(applicantid, jobid, applicationdate):
     """Add an application to the database."""
     add_application(applicantid, jobid, applicationdate)
+
+# works
+@hirehub.command("add_admin")
+@click.argument("firstname")
+@click.argument("lastname")
+@click.argument("email")
+@click.argument("username")
+@click.argument("password")
+@click.argument("companyid", type=int)
+def add_admin_command(firstname, lastname, email, username, password, companyid):
+    add_admin(firstname, lastname, email, username, password, companyid)
 
 # formatting output
 @hirehub.command("view_all_applicants")

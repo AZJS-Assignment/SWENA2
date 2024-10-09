@@ -1,17 +1,9 @@
-from App.models import *
 from App.database import db
-from App.controllers.commands import *
+from App.controllers.commands import add_company, add_admin, add_job, add_application, add_applicant
 
 def initialize():
     db.drop_all()
     db.create_all()
-
-    # Adding 5 admins, not linked to companies by default
-    add_admin("Sophia", "Lewis", "sophia.lewis@example.com", "sophiaL", "SecurePass456")
-    add_admin("Liam", "Robinson", "liam.robinson@example.com", "liamR", "StrongPass789")
-    add_admin("Olivia", "Walker", "olivia.walker@example.com", "oliviaW", "Pass4321!")
-    add_admin("Noah", "Hall", "noah.hall@example.com", "noahH", "SecurePass123")
-    add_admin("Mia", "Young", "mia.young@example.com", "miaY", "Password987")
 
     # Adding 5 companies, linking to admins
     add_company("BrightTech", "San Francisco", "Technology")
@@ -19,6 +11,13 @@ def initialize():
     add_company("FutureNet", "Boston", "Telecommunications")
     add_company("DataWorks", "Chicago", "Data Analytics")
     add_company("GreenEnergy", "Seattle", "Renewable Energy")
+
+    # Adding 5 admins, not linked to companies by default
+    add_admin("Sophia", "Lewis", "sophia.lewis@example.com", "sophiaL", "SecurePass456", 1)
+    add_admin("Liam", "Robinson", "liam.robinson@example.com", "liamR", "StrongPass789", 2)
+    add_admin("Olivia", "Walker", "olivia.walker@example.com", "oliviaW", "Pass4321!", 3)
+    add_admin("Noah", "Hall", "noah.hall@example.com", "noahH", "SecurePass123", 4)
+    add_admin("Mia", "Young", "mia.young@example.com", "miaY", "Password987", 5)
 
     # Adding 5 different jobs
     add_job("Software Engineer", 1, "$80,000 - $100,000", "Develop and maintain software applications.", "2024-12-31")

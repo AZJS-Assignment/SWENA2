@@ -11,8 +11,8 @@ def add_applicant(firstName, lastName, email, username, password, resume):
         print(f"Error: {err}")
 
 #Command 2 - Create Admin
-def add_admin(firstName, lastName, email, username, password):
-    result, err = create_admin(username, password, firstName, lastName, email)
+def add_admin(firstName, lastName, email, username, password, companyID):
+    result, err = create_admin(username, password, firstName, lastName, email, companyID)
     if result:
         print(f"{username} created successfully...")
     else:
