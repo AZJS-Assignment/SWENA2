@@ -1,5 +1,4 @@
 from App.models import *
-from App.database import db
 
 def get_all_users():
     users = User.query.all()
@@ -7,7 +6,7 @@ def get_all_users():
 
 def get_all_users_json():
     users = User.query.all()
-    if not user:
+    if not users:
         return []
     users = [user.get_json() for user in users]
     return users
