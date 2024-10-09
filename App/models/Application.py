@@ -3,7 +3,7 @@ from App.database import db
 class Application(db.Model):
     __tablename__ = 'application'
     applicationID = db.Column(db.Integer, primary_key=True)
-    applicantID = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
+    applicantID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     jobID = db.Column(db.Integer, db.ForeignKey('job.jobID'), nullable=False)
     applicationDate = db.Column(db.String(20), nullable=False)
 

@@ -9,7 +9,8 @@ class User(db.Model):
     lastName = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(120), nullable=False)
-
+    company = db.relationship('Company', backref='user', lazy=True)
+    
     def __init__(self, firstName, lastName, email, username, password):
         self.firstName = firstName
         self.lastName = lastName
@@ -25,7 +26,7 @@ class User(db.Model):
             'email': self.email,
             'username': self.username
         }
-
+    
     def set_password(self, password):
         """Create hashed password."""
         self.password = generate_password_hash(password)

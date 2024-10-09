@@ -1,8 +1,8 @@
 from App.models import *
 from App.database import *
 
-def create_company(companyName, location, industry):
-    newCompany = Company(companyName=companyName, location=location, industry=industry)
+def create_company(companyName, adminUserName, location, industry):
+    newCompany = Company(companyName=companyName, adminUserName=adminUserName, location=location, industry=industry)
     try:
         db.session.add(newCompany)
         db.session.commit()

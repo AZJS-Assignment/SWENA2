@@ -7,3 +7,4 @@ from .user import *
 from .auth import *
 from .initialize import *
 from .controllers import *
+from .commands import *

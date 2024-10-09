@@ -60,41 +60,41 @@ from App.models import db, Applicant, Admin, Company, Job, Application
 #         print(f"Failed to add application for applicant ID {applicantID} to job ID {jobID}. Error: {e}")
 #         return None
 
-def display_all_tables():
-    # Display all companies
-    companies = Company.query.all()
-    print("Companies:")
-    for company in companies:
-        print(company.__dict__)
-    print("\n")
+# def display_all_tables():
+#     # Display all companies
+#     companies = Company.query.all()
+#     print("Companies:")
+#     for company in companies:
+#         print(company.__dict__)
+#     print("\n")
 
-    # Display all applicants
-    applicants = Applicant.query.all()
-    print("Applicants:")
-    for applicant in applicants:
-        print(applicant.get_json())
-    print("\n")
+#     # Display all applicants
+#     applicants = Applicant.query.all()
+#     print("Applicants:")
+#     for applicant in applicants:
+#         print(applicant.get_json())
+#     print("\n")
 
-    # Display all admins
-    admins = Admin.query.all()
-    print("Admins:")
-    for admin in admins:
-        print(admin.get_json())
-    print("\n")
+#     # Display all admins
+#     admins = Admin.query.all()
+#     print("Admins:")
+#     for admin in admins:
+#         print(admin.get_json())
+#     print("\n")
 
-    # Display all jobs
-    jobs = Job.query.all()
-    print("Jobs:")
-    for job in jobs:
-        print(job.__dict__)
-    print("\n")
+#     # Display all jobs
+#     jobs = Job.query.all()
+#     print("Jobs:")
+#     for job in jobs:
+#         print(job.__dict__)
+#     print("\n")
 
-    # Display all applications
-    applications = Application.query.all()
-    print("Applications:")
-    for application in applications:
-        print(application.__dict__) 
-    print("\n")
+#     # Display all applications
+#     applications = Application.query.all()
+#     print("Applications:")
+#     for application in applications:
+#         print(application.__dict__) 
+#     print("\n")
 
 # def view_jobs():
 #     try:

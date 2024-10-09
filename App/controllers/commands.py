@@ -11,16 +11,16 @@ def add_applicant(firstName, lastName, email, username, password, resume):
         print(f"Error: {err}")
 
 #Command 2 - Create Admin
-def add_admin(firstName, lastName, email, username, password, companyID):
-    result, err = create_admin(username, password, firstName, lastName, email, companyID)
+def add_admin(firstName, lastName, email, username, password):
+    result, err = create_admin(username, password, firstName, lastName, email)
     if result:
         print(f"{username} created successfully...")
     else:
         print(f"Error: {err}")
 
 # Command 3 - Create Company
-def add_company(companyName, location, industry):
-    result, err = create_company(companyName, location, industry)
+def add_company(companyName, adminUserName, location, industry):
+    result, err = create_company(companyName, adminUserName, location, industry)
     if result:
         print(f"{companyName} created successfully...")
     else:
