@@ -98,11 +98,12 @@ def add_applicant_command(first_name, last_name, email, username, password, resu
 # works
 @hirehub.command("add_company")
 @click.argument("company_name")
+@click.argument("admin_id")
 @click.argument("location")
 @click.argument("industry")
-def add_company_command(company_name, location, industry):
+def add_company_command(company_name, admin_id, location, industry):
     """Add a company to the database."""
-    add_company(company_name, location, industry)
+    add_company(company_name, admin_id, location, industry)
 
 # works
 @hirehub.command("add_job")
@@ -131,9 +132,8 @@ def add_application_command(applicantid, jobid, applicationdate):
 @click.argument("email")
 @click.argument("username")
 @click.argument("password")
-@click.argument("companyid", type=int)
-def add_admin_command(firstname, lastname, email, username, password, companyid):
-    add_admin(firstname, lastname, email, username, password, companyid)
+def add_admin_command(firstname, lastname, email, username, password):
+    add_admin(firstname, lastname, email, username, password)
 
 # formatting output
 @hirehub.command("view_all_applicants")

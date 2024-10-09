@@ -9,7 +9,11 @@ class User(db.Model):
     lastName = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    
+    type = db.Column(db.String(50))
+    __mapper_args__ = {'polymorphic_identity': 'user', 'polymorphic_on': type}
+    applications = db.relationship('Application', backref='user', lazy=True)
+    companyRelation = db.relationship('Company', backref='user', lazy=True)
+
     def __init__(self, firstName, lastName, email, username, password):
         self.firstName = firstName
         self.lastName = lastName
@@ -23,7 +27,8 @@ class User(db.Model):
             'firstName': self.firstName,
             'lastName': self.lastName,
             'email': self.email,
-            'username': self.username
+            'username': self.username,
+            'type': self.type
         }
     
     def set_password(self, password):

@@ -2,13 +2,14 @@ from App.database import db
 
 class Company(db.Model):
     companyID = db.Column(db.Integer, primary_key=True)
+    adminID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     companyName = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(120), nullable=False)
     industry = db.Column(db.String(120), nullable=False)
-    adminRelation = db.relationship("Admin", backref="company", lazy=True)
 
-    def __init__(self, companyName, location, industry):
+    def __init__(self, companyName, adminID, location, industry):
         self.companyName = companyName
+        self.adminID = adminID
         self.location = location
         self.industry = industry
     
@@ -16,6 +17,7 @@ class Company(db.Model):
         return {
             'companyID': self.companyID,
             'companyName': self.companyName,
+            'adminID': self.adminID,
             'location': self.location,
             'industry': self.industry
         }
