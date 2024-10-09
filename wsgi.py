@@ -81,6 +81,7 @@ def display_all_tables_command():
     """Display all tables and their data."""
     view_tables()
 
+# works
 @hirehub.command("add_applicant")
 @click.argument("first_name")  
 @click.argument("last_name") 
@@ -92,6 +93,7 @@ def add_applicant_command(first_name, last_name, email, username, password, resu
     """Add an applicant to the database."""
     add_applicant(first_name, last_name, email, username, password, resume)
 
+# works
 @hirehub.command("add_company")
 @click.argument("company_name")
 @click.argument("location")
@@ -100,6 +102,7 @@ def add_company_command(company_name, location, industry):
     """Add a company to the database."""
     add_company(company_name, location, industry)
 
+# works
 @hirehub.command("add_job")
 @click.argument("title")
 @click.argument("companyid")
@@ -110,6 +113,7 @@ def add_job_command(title, companyid, salaryrange, description, applicationdeadl
     """Add a job to the database."""
     add_job(title, companyid, salaryrange, description, applicationdeadline)
 
+# works
 @hirehub.command("add_application")
 @click.argument("applicantid")
 @click.argument("jobid")
@@ -118,29 +122,34 @@ def add_application_command(applicantid, jobid, applicationdate):
     """Add an application to the database."""
     add_application(applicantid, jobid, applicationdate)
 
-@hirehub.command("view_applicants")
+# formatting output
+@hirehub.command("view_all_applicants")
 def view_applicants_command():
     """Display all applicants in the database."""
     view_all_applicants()
 
+# formatting output
 @hirehub.command("view_companies")
 def view_companies_command():
     """Display all companies in the database."""
     view_all_companies()
 
+# formatting output
 @hirehub.command("view_applications")
 def view_applications_command():
     """Display all applications in the database."""
     view_all_applications()
 
+# formatting output
 @hirehub.command("view_jobs")
 def view_jobs_command():
     """Display all jobs in the database."""
     view_all_jobs()
 
+#needs work add context
 @hirehub.command("view_applicants")
 @click.argument("job_id")
-def view_applicants_command(job_id):
+def view_applicants_by_job_command(job_id):
     """View all applicants for a specific job."""
     view_applications(job_id)
 

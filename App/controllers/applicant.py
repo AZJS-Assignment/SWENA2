@@ -7,7 +7,7 @@ def create_applicant(username, password, firstName, lastName, email, resume):
     try:
         db.session.add(newApplicant)
         db.session.commit()
-        return True
+        return True, None
     
     except Exception as e:
         db.session.rollback()
@@ -30,7 +30,7 @@ def get_all_applicants_json():
     for applicant in applicants:
         if not applicant:
             return []
-        applicants = [applicant.get_json for applicant in applicants]
+        applicants = [applicant.get_json() for applicant in applicants]
         return applicants
 
 def update_applicant_username(id, username):

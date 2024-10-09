@@ -19,8 +19,8 @@ def add_admin(firstName, lastName, email, username, password):
         print(f"Error: {err}")
 
 # Command 3 - Create Company
-def add_company(companyName, adminUserName, location, industry):
-    result, err = create_company(companyName, adminUserName, location, industry)
+def add_company(companyName, location, industry):
+    result, err = create_company(companyName, location, industry)
     if result:
         print(f"{companyName} created successfully...")
     else:
@@ -64,7 +64,7 @@ def view_all_applications():
 
 # Command 10 - View Applications for a Job
 def view_applications(jobID):
-    applications = get_applications_by_jobID_json()
+    applications = get_applications_by_jobID_json(jobID)
     print(f"{applications}")
 
 # Command 11 - View All Tables
@@ -73,5 +73,16 @@ def view_tables():
     applicants = get_all_applicants_json()
     applications = get_all_applications_json()
     jobs = get_all_jobs_json()
-    users = get_all_users_json()
-    print(f"Companies\n{companies}\n\nApplicants\n{applicants}\n\nApplications\n{applications}\n\nJobs\n{jobs}\n\nUsers\n{users}")
+    admins = get_all_admins_json()
+    applicants = get_all_applicants_json()
+    
+    for company in companies:
+        print(f"{company}")
+    for job in jobs:
+        print(f"{job}")
+    for admin in admins:
+        print(f"{admin}")
+    for applicant in applicants:
+        print(f"{applicant}")
+    for application in applications:
+        print(f"{application}")

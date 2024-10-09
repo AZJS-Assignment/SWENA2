@@ -1,23 +1,24 @@
 from App.database import db
-from App.controllers import *
+from App.models import *
+from App.controllers.commands import *
 
 def initialize():
     db.drop_all()
     db.create_all()
-    
+
     # Adding 5 admins, not linked to companies by default
     add_admin("Sophia", "Lewis", "sophia.lewis@example.com", "sophiaL", "SecurePass456")
     add_admin("Liam", "Robinson", "liam.robinson@example.com", "liamR", "StrongPass789")
     add_admin("Olivia", "Walker", "olivia.walker@example.com", "oliviaW", "Pass4321!")
     add_admin("Noah", "Hall", "noah.hall@example.com", "noahH", "SecurePass123")
     add_admin("Mia", "Young", "mia.young@example.com", "miaY", "Password987")
- 
+
     # Adding 5 companies, linking to admins
-    add_company("BrightTech", "sophiaL", "San Francisco", "Technology")
-    add_company("InnovateLLC", "liamR" , "Austin", "Consulting")
-    add_company("FutureNet", "oliviaW" , "Boston", "Telecommunications")
-    add_company("DataWorks", "noahH" , "Chicago", "Data Analytics")
-    add_company("GreenEnergy", "miaY" , "Seattle", "Renewable Energy")
+    add_company("BrightTech", "San Francisco", "Technology")
+    add_company("InnovateLLC", "Austin", "Consulting")
+    add_company("FutureNet", "Boston", "Telecommunications")
+    add_company("DataWorks", "Chicago", "Data Analytics")
+    add_company("GreenEnergy", "Seattle", "Renewable Energy")
 
     # Adding 5 different jobs
     add_job("Software Engineer", 1, "$80,000 - $100,000", "Develop and maintain software applications.", "2024-12-31")
@@ -39,18 +40,17 @@ def initialize():
         ("Ivy", "Clark", "ivy.clark@example.com", "ivyclark", "password123", "ivy_resume.pdf"),
         ("Jack", "Lopez", "jack.lopez@example.com", "jacklopez", "password123", "jack_resume.pdf"),
     ]
-
     for applicant in applicants:
         add_applicant(*applicant)
-
+    
     # Adding 10 applications
-    application_1 = add_application(applicantID=1, jobID=1, applicationDate="2024-09-01")
-    application_2 = add_application(applicantID=2, jobID=1, applicationDate="2024-09-02")
-    application_3 = add_application(applicantID=1, jobID=2, applicationDate="2024-09-03")
-    application_4 = add_application(applicantID=3, jobID=2, applicationDate="2024-09-04")
-    application_5 = add_application(applicantID=4, jobID=3, applicationDate="2024-09-05")
-    application_6 = add_application(applicantID=2, jobID=3, applicationDate="2024-09-06")
-    application_7 = add_application(applicantID=5, jobID=4, applicationDate="2024-09-07")
-    application_8 = add_application(applicantID=1, jobID=4, applicationDate="2024-09-08")
-    application_9 = add_application(applicantID=3, jobID=5, applicationDate="2024-09-09")
-    application_10 = add_application(applicantID=4, jobID=5, applicationDate="2024-09-10")
+    add_application(applicantID=6, jobID=1, applicationDate="2024-09-01")
+    add_application(applicantID=7, jobID=1, applicationDate="2024-09-02")
+    add_application(applicantID=8, jobID=2, applicationDate="2024-09-03")
+    add_application(applicantID=9, jobID=2, applicationDate="2024-09-04")
+    add_application(applicantID=10, jobID=3, applicationDate="2024-09-05")
+    add_application(applicantID=11, jobID=3, applicationDate="2024-09-06")
+    add_application(applicantID=12, jobID=4, applicationDate="2024-09-07")
+    add_application(applicantID=13, jobID=4, applicationDate="2024-09-08")
+    add_application(applicantID=14, jobID=5, applicationDate="2024-09-09")
+    add_application(applicantID=15, jobID=5, applicationDate="2024-09-10")

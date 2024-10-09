@@ -7,7 +7,7 @@ def create_admin(username, password, firstName, lastName, email):
     try:
         db.session.add(newAdmin)
         db.session.commit()
-        return True
+        return True, None
     except Exception as e:
         db.session.rollback()
         return False, e

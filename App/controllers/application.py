@@ -6,7 +6,7 @@ def create_application(applicantID, jobID, applicationDate):
     try:
         db.session.add(newApplication)
         db.session.commit()
-        return True
+        return True, None
     except Exception as e:
         db.session.rollback()
         return False, e
@@ -46,3 +46,4 @@ def get_all_applications_json():
     if not applications:
         return []
     applications = [application.get_json() for application in applications]
+    return applications

@@ -12,7 +12,7 @@ def create_job(title, companyID, salaryRange, description, applicationDeadline):
     try:
         db.session.add(newJob)
         db.session.commit()
-        return True
+        return True, None
     except Exception as e:
         db.session.rollback()
         return False, e

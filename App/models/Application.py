@@ -1,9 +1,8 @@
 from App.database import db
 
 class Application(db.Model):
-    __tablename__ = 'application'
     applicationID = db.Column(db.Integer, primary_key=True)
-    applicantID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    applicantID = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
     jobID = db.Column(db.Integer, db.ForeignKey('job.jobID'), nullable=False)
     applicationDate = db.Column(db.String(20), nullable=False)
 
@@ -15,6 +14,7 @@ class Application(db.Model):
     def get_json(self):
         return {
             'applicationID': self.applicationID,
+            'applicantID': self.applicantID,
             'jobID': self.jobID,
             'applicationDate': self.applicationDate
         }

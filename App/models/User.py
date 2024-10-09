@@ -9,7 +9,7 @@ class User(db.Model):
     lastName = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    company = db.relationship('Company', backref='user', lazy=True)
+    #company = db.relationship('Company', backref='user', lazy=True)
     
     def __init__(self, firstName, lastName, email, username, password):
         self.firstName = firstName
@@ -48,12 +48,3 @@ class User(db.Model):
         """Simulate logout."""
         print(f"{self.username} logged out successfully.")
         return True
-
-    def viewJobs(self) -> None:
-        """Display all available jobs."""
-        jobs = Job.query.all()
-        if jobs:
-            for job in jobs:
-                print(job.get_json())
-        else:
-            print("No jobs available.")
