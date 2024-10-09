@@ -1,6 +1,6 @@
 from App.controllers import *
 from App.models import *
-from App.database import *
+from App.database import db
 
 # Command 1 - Create Applicant
 def add_applicant(firstName, lastName, email, username, password, resume):

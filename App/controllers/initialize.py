@@ -1,5 +1,5 @@
-from App.database import db
 from App.models import *
+from App.database import db
 from App.controllers.commands import *
 
 def initialize():
