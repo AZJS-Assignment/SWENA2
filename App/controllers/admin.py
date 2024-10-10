@@ -1,4 +1,4 @@
-from App.models import Admin
+from App.models import Admin, User
 from App.database import db
 
 def create_admin(username, password, firstName, lastName, email):
@@ -14,11 +14,11 @@ def create_admin(username, password, firstName, lastName, email):
 
 def get_admin_by_username(username):
     admin = Admin.query.filter_by(username=username).first()
-    return admin #json
+    return admin.get_json()
 
 def get_admin_by_id(id):
     admin = Admin.query.filter_by(id=id).first()
-    return admin #json
+    return admin.get_json()
 
 def get_all_admins():
     admins = Admin.query.all()
@@ -38,3 +38,9 @@ def update_admin_username(id, username):
         db.session.add(admin)
         return db.session.commit()
     return None
+
+def is_admin(id):
+    admin = Admin.query.filter_by(id=id).first()
+    if not admin:
+        return False
+    return True

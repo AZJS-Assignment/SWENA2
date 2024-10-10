@@ -38,17 +38,3 @@ class User(db.Model):
     def check_password(self, password):
         """Check hashed password."""
         return check_password_hash(self.password, password)
-
-    def login(self, password: str) -> bool:
-        """Check if the password is correct for login."""
-        if self.check_password(password):
-            print(f"{self.username} logged in successfully.")
-            return True
-        else:
-            print(f"Login failed for {self.username}.")
-            return False
-
-    def logout(self) -> bool:
-        """Simulate logout."""
-        print(f"{self.username} logged out successfully.")
-        return True

@@ -1,5 +1,5 @@
-from App.models import *
-from App.database import *
+from App.models import Job
+from App.database import db
 
 def create_job(title, companyID, salaryRange, description, applicationDeadline):
     newJob = Job(
@@ -18,8 +18,13 @@ def create_job(title, companyID, salaryRange, description, applicationDeadline):
         return False, e
 
 def get_job_by_id(jobID):
-    job = Job.query.filter_by(jobID=jobID)
-    return job #json
+    job = Job.query.filter_by(jobID=jobID).first()
+    return job.get_json()
+
+def get_jobs_by_companyID(companyID):
+    jobs = Job.query.filter_by(companyID=companyID).all()
+    jobs = [job.get_json() for job in jobs]
+    return jobs
 
 def get_all_jobs():
     jobs = Job.query.all()

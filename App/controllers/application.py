@@ -13,7 +13,7 @@ def create_application(applicantID, jobID, applicationDate):
 
 def get_application_by_id(applicationID):
     application = Application.query.filter_by(applicationID=applicationID).first()
-    return application #json
+    return application
 
 def get_applications_by_applicantID(applicantID):
     applications = Application.query.filter_by(id=applicantID).all()

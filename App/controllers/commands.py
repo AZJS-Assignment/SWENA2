@@ -6,33 +6,33 @@ from App.database import db
 def add_applicant(firstName, lastName, email, username, password, resume):
     result, err = create_applicant(username, password, firstName, lastName, email, resume)
     if result:
-        print(f"{username} created successfully...")
+        return True
     else:
-        print(f"Error: {err}")
+        return False
 
 #Command 2 - Create Admin
 def add_admin(firstName, lastName, email, username, password):
     result, err = create_admin(username, password, firstName, lastName, email)
     if result:
-        print(f"{username} created successfully...")
+        return True
     else:
-        print(f"Error: {err}")
+        return False
 
 # Command 3 - Create Company
 def add_company(companyName, adminID, location, industry):
     result, err = create_company(companyName, adminID, location, industry)
     if result:
-        print(f"{companyName} created successfully...")
+        return True
     else:
-        print(f"Error: {err}")
+        return False
 
 # Command 4 - Create Job
 def add_job(title, companyID, salaryRange, description, applicationDeadline):
     result, err = create_job(title, companyID, salaryRange, description, applicationDeadline)
     if result:
-        print(f"{title} - ${salaryRange} created successfully...")
+        return True
     else:
-        print(f"Error: {err}")
+        return False
 
 # Command 5 - Create Application
 def add_application(applicantID, jobID, applicationDate):

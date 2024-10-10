@@ -19,7 +19,7 @@ def get_applicant_by_username(username):
 
 def get_applicant_by_id(id):
     applicant = Applicant.query.filter_by(id=id).first()
-    return applicant
+    return applicant.get_json()
 
 def get_all_applicants():
     applicants = Applicant.query.all()

@@ -13,7 +13,12 @@ def create_company(companyName, adminID, location, industry):
 
 def get_company_by_id(companyID):
     company = Company.query.filter_by(companyID=companyID).first()
-    return company #json
+    return company.get_json()
+
+def get_companies_by_adminID(adminID):
+    companies = Company.query.filter_by(adminID=adminID).all()
+    companies = [company.get_json() for company in companies]
+    return companies
 
 def get_all_companies():
     companies = Company.query.all()
