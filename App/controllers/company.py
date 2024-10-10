@@ -30,3 +30,9 @@ def get_all_companies_json():
         return []
     companies = [company.get_json() for company in companies]
     return companies
+
+def is_company(companyID):
+    company = Company.query.filter_by(companyID=companyID).first()
+    if company:
+        return True
+    return False

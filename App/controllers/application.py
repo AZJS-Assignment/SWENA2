@@ -2,6 +2,10 @@ from App.models import *
 from App.database import db
 
 def create_application(applicantID, jobID, applicationDate):
+    application = Application.query.filter_by(applicantID=applicantID, jobID=jobID).first()
+    if application:
+        return False
+    
     newApplication = Application(applicantID=applicantID, jobID=jobID, applicationDate=applicationDate)
     try:
         db.session.add(newApplication)
@@ -20,7 +24,7 @@ def get_applications_by_applicantID(applicantID):
     return applications
 
 def get_applications_by_applicantID_json(applicantID):
-    applications = Application.query.filter_by(id=applicantID).all()
+    applications = Application.query.filter_by(applicantID=applicantID).all()
     if not applications:
         return []
     applications = [application.get_json() for application in applications]

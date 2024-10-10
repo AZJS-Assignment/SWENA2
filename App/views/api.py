@@ -20,19 +20,19 @@ api_views = Blueprint('api_views', __name__, template_folder="../templates")
 @api_views.route('/api/applicant', methods=['POST'])
 def create_applicant_api():
     data = request.json
-    if add_applicant(*data):
-        return jsonify(message='applicant created')
+    if add_applicant(data['firstName'], data['lastName'], data['email'], data['username'], data['password'], data['resume']):
+        return jsonify(message='applicant created'), 201
     else:
-        return jsonify(message='username already exists'), 401
+        return jsonify(message='applicant already exists'), 400
 
 # Adds a new admin
 @api_views.route('/api/admin', methods=['POST'])
 def create_admin_api():
     data = request.json
-    if add_admin(*data):
-        return jsonify(message='admin created')
+    if add_admin(data['firstName'], data['lastName'], data['email'], data['username'], data['password']):
+        return jsonify(message='admin created'), 201
     else:
-        return jsonify(message='username already exists'), 401
+        return jsonify(message='admin already exists'), 400
 
 # Adds a new company
 @api_views.route('/api/company', methods=['POST'])
@@ -42,9 +42,9 @@ def create_company_api():
     if admin:
         data = request.json
         if add_company(data['companyName'],admin['id'],data['location'], data['industry']):
-            return jsonify(message='company created')
+            return jsonify(message='company created'), 201
         else:
-            return jsonify(message='company already exists')
+            return jsonify(message='company already exists'), 400
     else:
         return jsonify(message='not an admin')
 
@@ -55,9 +55,9 @@ def create_job_api():
     if is_admin(get_jwt_identity()):
         data = request.json
         if create_job(data['title'], data['companyID'], data['salaryRange'], data['description'], data['applicationDeadline']):
-            return jsonify(message="job created")
+            return jsonify(message="job created"), 201
         else:
-            return jsonify(message="error")
+            return jsonify(message="company does not exist"), 400
     else:
         return jsonify(message="NOT")
 
@@ -68,10 +68,10 @@ def create_application_api():
     applicant = get_applicant_by_id(get_jwt_identity())
     if applicant:
         data = request.json
-        if create_application(applicant['id'],*data):
-            return jsonify(message='application created')
+        if create_application(applicant['id'], data['jobID'], data['applicationDate']):
+            return jsonify(message='application created'), 201
         else:
-            return jsonify(message="error")
+            return jsonify(message="application already exists"), 400
     else:
         return jsonify(message="not")
 
@@ -92,7 +92,16 @@ def view_applications_api(job_id):
             return jsonify(message='NOT A JOB')
     else:
         return jsonify(message='NOT AN ADMIN')
-    
+
+# View Applicant's Applications
+@api_views.route('/api/applications', methods=['GET'])
+@jwt_required()
+def view_applicant_applications_api():
+    if is_applicant(get_jwt_identity()):
+        applications = get_applications_by_applicantID_json(get_jwt_identity())
+        return applications
+
+
 # View All Jobs
 @api_views.route('/api/jobs', methods=['GET'])
 @jwt_required()

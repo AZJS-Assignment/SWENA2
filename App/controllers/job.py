@@ -1,7 +1,11 @@
-from App.models import Job
+from App.models import Job, Company
+from App.controllers import is_company
 from App.database import db
 
 def create_job(title, companyID, salaryRange, description, applicationDeadline):
+    if not is_company(companyID):
+        return False
+    
     newJob = Job(
         title=title, 
         companyID=companyID, 

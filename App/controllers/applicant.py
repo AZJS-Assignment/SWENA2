@@ -48,3 +48,9 @@ def update_applicant_resume(id, resume):
         db.session.add(applicant)
         return db.session.commit()
     return None
+
+def is_applicant(id):
+    applicant = Applicant.query.filter_by(id=id).first()
+    if applicant:
+        return True
+    return False
